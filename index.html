@@ -11,5 +11,26 @@ UABE（地址：https://7daystodie.com/forums/showthread.php?22675-Unity-Assets-
 [数据的导出与导入，注意批量导入功能只能用于其本身导出的名称中多了path ID的文件]
 　AssetStudio（地址：https://www.perfare.net/tag/assetstudio）
 [数据的导出，相对UABE界面更简洁，筛选功能强大，允许方便预览]
+
+
+
+
+
+换字体：
+  包括提取，制作对应，替换回三阶段
+ 1：提取
+  使用AssetStudio打开游戏data文件夹内的assest和unity3D，有时候无后缀的level123都要一起打开，此时上方框内会显示游戏的版本，制作对应替换字体时需要用对应版本unity制作
+  使用搜索功能搜SDF，此时显示所有的字体相关文件，一般是font的monobehavior、atlas（理解为以图片形式保存的字体文件）、material
+ 使用UABE或UABEA打开游戏内上述那些东西，搜索对应名称，用export dump 导出monobehavior、material的json，注意，uabe直接导出会导致读取不全，需要先read再导出
+  read:他会向你需求一大堆dll，都在游戏managed文件夹下，有就有，没有就没有
+  
+
+
+
+
+
+
+
+
 </body>
 </html>
