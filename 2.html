@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>表单生成JSON</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #d8d8d8; /* 使用您所期望的暗色背景色值 */
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        select {
+            width: 350px;
+            padding: 5px;
+        }
+
+        input[type="button"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="button"]:hover {
+            background-color: #45a049;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+        
+        #output {
+            width: 400px;
+            margin: 0 auto;
+            text-align: left;
+            background-color: #737373; /* 使用您所期望的暗色背景色值 */
+            color: #FFF; /* 设置生成文本的颜色为白色，与暗色背景形成对比 */
+        }
+
+    </style>
+    <script>
+        function generateJSON() {
+            // 获取表单输入的值
+            var sourcename = document.getElementById("sourcename").value;
+            var location = document.getElementById("location").value;
+            var type = document.getElementById("type").value;
+
+            // 创建一个表示JSON对象的JavaScript对象
+            var jsonData = {
+                "sourcename": sourcename,
+                "location": location,
+                "type": type
+            };
+
+            // 将JavaScript对象转换为JSON字符串
+            var jsonString = JSON.stringify(jsonData, null, 4);
+
+            // 在页面上显示生成的JSON文本
+            document.getElementById("output").innerText = jsonString;
+        }
+        
+        function copyToClipboard() {
+            // 获取生成的JSON文本
+            var outputText = document.getElementById("output").innerText;
+            
+            // 创建临时输入框
+            var tempInput = document.createElement("textarea");
+            tempInput.value = outputText;
+            
+            // 将临时输入框添加到文档中
+            document.body.appendChild(tempInput);
+            
+            // 选中临时输入框中的文本
+            tempInput.select();
+            
+            // 复制文本到剪贴板
+            document.execCommand("copy");
+            
+            // 移除临时输入框
+            document.body.removeChild(tempInput);
+            
+            // 提示复制成功
+           // alert("已成功复制到剪贴板！");
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>生成JSON文本</h1>
+
+        <form>
+            <label for="sourcename">源文件路径:</label>
+            <input type="text" id="sourcename" name="sourcename" placeholder="输入源文件路径"><br><br>
+
+            <label for="location">文本位置:</label>
+            <input type="text" id="location" name="location" placeholder="输入文本位置"><br><br>
+
+            <label for="type">类型:</label>
+            <select id="type" name="type">
+                <option value="AddExprReplaceImpl">AddExprReplaceImpl</option>
+                <option value="SnippetReplaceImpl">SnippetReplaceImpl</option>
+            </select><br><br>
+
+            <input type="button" value="生成JSON" onclick="generateJSON()">
+        </form>
+
+        <h2>生成的JSON文本：</h2>
+        <pre id="output" readonly></pre>
+
+        <br>
+
+        <button onclick="copyToClipboard()" title="复制结果">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24px" height="24px">
+                <path d="M0 0h24v24H0z" fill="none"/>
+                <path d="M15 3H3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-1 13H4v-2h10v2zm0-4H4V7h10v5zm6-9h-5v2h2v13H7V7h2V5H2v17h20V5z"/>
+            </svg>
+        </button>
+    </div>
+</body>
+</html>
