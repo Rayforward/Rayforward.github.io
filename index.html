@@ -26,6 +26,29 @@ UABE（地址：https://7daystodie.com/forums/showthread.php?22675-Unity-Assets-
   
 
 
+笔记：TMP字体的制作与替换
+  本身有很多攻略，这里指出他人未提及之处：
+  TMP字体有多种渲染模式（Render mode），这在对应tmp的atlas（MonoBehaviour）中有定义，如：
+renderMode = 4117
+
+4117指代Render mode中的Smooth，具体来说，有以下对应关系：
+SMOOTH_HINTED = 4121,
+SMOOTH = 4117,
+COLOR_HINTED = 69656,
+COLOR = 69652,
+RASTER_HINTED = 4122,
+RASTER = 4118,
+SDF = 4134,
+SDF8 = 8230,
+SDF16 = 16422,
+SDF32 = 32806,
+SDFAA_HINTED = 4169,
+SDFAA = 4165
+
+所以你在替换时需要查看原字体的渲染模式，并生成同模式的字体进行替换，否则就会出现奇怪的显示问题
+
+TMP字体在生成时可以选择pointsize，你可能会选择和原字体的pointsize相同，但实际上，这可能会导致生成的字体在无报错的情况下丢失很多字体，所以选择Auto是不会错的
+
 
 
 
